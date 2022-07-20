@@ -18,7 +18,7 @@ const checkServerErrors = (response) => {
         throw new Error('HTTP Error 403 – Forbidden')
     }
     if(response.status == httpStatusCodes.NOT_FOUND){
-        throw new Error()
+        throw new Error('HTTP Error 404 – Not Found')
     }
     if(response.status == httpStatusCodes.INTERNAL_SERVER){
         throw new Error('HTTP Error 500 – Internal Server Error')

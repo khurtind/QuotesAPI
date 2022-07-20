@@ -1,20 +1,33 @@
+const currencyLength = 3
 const inputErrors = {
-    from_currency_incorrect: 'Please provide a proper currency code to convert from',
-    amount_missing: 'Please provide an amount in cents',
-    to_currency_incorrect: 'Please provide a proper currency code to convert to'
+    missingArguemntInQuery: 'An argument in your query is missing, or it is misspelled',
+    wrongCurrency: 'Provided currency code is not correct',
+    notNumber: 'Provided amount should be only a positive number'
 }
 
-const validateInput = (quoteRequestInstance) => {
-    //Check if all the needed information is there
-    if(!quoteRequestInstance.from_currency_code || quoteRequestInstance.from_currency_code.length > 3 || quoteRequestInstance.from_currency_code.length < 3){
-       throw new Error(inputErrors.from_currency_incorrect)
+const validateQuery = (query) => {
+    //Make sure all neccessary parts are in place
+    if(!query.from_currency_code || !query.amount || !query.to_currency_code){
+        throw new Error(inputErrors.missingArguemntInQuery)
     }
-    if(!quoteRequestInstance.amount){
-        throw new Error(inputErrors.amount_missing)
+    //Make sure the length of the currency equals 3
+    if(query.from_currency_code.length !== currencyLength || query.to_currency_code.length !== currencyLength ){
+        throw new Error(inputErrors.wrongCurrency)
     }
-    if(!quoteRequestInstance.to_currency_code || quoteRequestInstance.to_currency_code.length > 3 || quoteRequestInstance.to_currency_code.length < 3){
-        throw new Error(inputErrors.to_currency_incorrect)
+    //Make sure amount is a number and positive
+    if(typeof query.amount === 'string'){
+        const num = Number(query.amount)
+        if(!Number.isInteger(num) || num < 0){
+            throw new Error(inputErrors.notNumber)
+        }
+    }
+    const fromCurrency = query.from_currency_code.toUpperCase()
+    const amount = query.amount
+    const toCurrency = query.to_currency_code.toUpperCase()
+    return {
+        fromCurrency,
+        amount,
+        toCurrency
     }
 }
-
-module.exports = validateInput
+module.exports = {validateQuery}

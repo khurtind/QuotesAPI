@@ -1,8 +1,8 @@
 class QuoteRequest {
-    constructor(from_currency_code, amount, to_currency_code){
-        this.from_currency_code = from_currency_code
+    constructor(fromCurrency, amount, toCurrency){
+        this.fromCurrency = fromCurrency
         this.amount = amount
-        this.to_currency_code = to_currency_code
+        this.toCurrency = toCurrency
     }
 }
 
