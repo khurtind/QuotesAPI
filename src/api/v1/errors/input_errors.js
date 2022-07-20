@@ -4,7 +4,7 @@ const inputErrors = {
     to_currency_incorrect: 'Please provide a proper currency code to convert to'
 }
 
-const checkInputError = (quoteRequestInstance) => {
+const validateInput = (quoteRequestInstance) => {
     //Check if all the needed information is there
     if(!quoteRequestInstance.from_currency_code || quoteRequestInstance.from_currency_code.length > 3 || quoteRequestInstance.from_currency_code.length < 3){
        throw new Error(inputErrors.from_currency_incorrect)
@@ -17,4 +17,4 @@ const checkInputError = (quoteRequestInstance) => {
     }
 }
 
-module.exports = checkInputError
+module.exports = validateInput
