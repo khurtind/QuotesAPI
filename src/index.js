@@ -1,5 +1,5 @@
 const express = require('express')
-const v1Router = require('./api/v1/routes/quote_routes')
+const v1Router = require('./api/v1/routes/quote-routes')
 
 const app = express()
 const port = process.env.PORT || 3000

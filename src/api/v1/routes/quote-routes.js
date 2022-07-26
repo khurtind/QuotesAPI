@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const quotesController = require('../controllers/quotes_controller')
-const defaultController = require('../controllers/default_controller')
+const quotesController = require('../controllers/quotes-controller')
+const defaultController = require('../controllers/default-controller')
 
 router.get('/api/quote', quotesController.getQuotes)
 
